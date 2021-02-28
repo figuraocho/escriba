@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <h2 class="col-12">Lista de Campañas</h2>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div *ngFor="let campaign of campaignList">
+        <p><b>Nombre</b>{{campaign.name}}</p>
+        <p><b>Ambientacion</b>{{campaign.setting}}</p>
+        <p><b>Sistema</b>{{campaign.system}}</p>
+        <p><b>Descripcion</b>{{campaign.description}}</p>
+      </div>
+    </div>
+    <hr>
+    <form  [formGroup]="campaignForm" class="col-6" (ngSubmit)="onSubmit()">
+      <p>
+        <label for="name">Nombre de la campaña</label>
+        <input type="text" name="name" id="name" required formControlName="name">
+      </p>
+      <p>
+        <label for="setting">Ambientacion</label>
+        <input type="text" name="setting" id="setting" formControlName="setting">
+      </p>
+      <p>
+        <label for="system">Sistema</label>
+        <input type="text" name="System" id="system" formControlName="system">
+      </p>
+      <p>
+        <label for="description">Descripcion</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" formControlName="description"></textarea>
+      </p>
+      <p><button type="submit" class="btn btn-primary">Crear</button></p>
+    </form>
+  </div>
+</div>
