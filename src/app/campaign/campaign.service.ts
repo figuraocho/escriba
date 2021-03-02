@@ -10,14 +10,14 @@ export class CampaignService {
   private campaignList = [
     {
       name: 'Campaña1',
-      id: 1,
+      id: "a",
       setting: 'Fantasia',
       system: 'D&D5',
       description: 'Campaña del resugir del dragon',
     },
     {
       name: 'Campaña2',
-      id: 2,
+      id: "b",
       setting: 'Sci-Fi',
       system: 'Shadowrun',
       description: 'A pegar tiros',
@@ -30,7 +30,7 @@ export class CampaignService {
     return this.campaignList.slice();
   }
 
-  public getCampaign(id: number) {
+  public getCampaign(id: string) {
     return this.campaignList.find(element => element.id === id);
   }
 
