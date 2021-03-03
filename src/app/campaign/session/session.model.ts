@@ -1,3 +1,3 @@
 export class Session {
-  constructor(private date: Date, private text: string, private id?:string){}
+  constructor(public date: Date, public text: string, public id?:string){}
 }

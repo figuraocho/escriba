@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { Campaign } from './campaign.model';
@@ -18,18 +18,31 @@ export class CampaignComponent implements OnInit, OnDestroy {
   constructor(private campaignService: CampaignService) {}
 
   ngOnInit(): void {
-    this.campaignList = this.campaignService.getCampaings();
+    this.campaignList = this.campaignService.getCampaigns();
     this.subscripcion = this.campaignService.campaignsChange.subscribe(
       (campaignList: Campaign[]) => {
         this.campaignList = campaignList;
       }
     );
     this.campaignForm = new FormGroup({
-      name: new FormControl(""),
-      setting: new FormControl(""),
-      system: new FormControl(""),
-      description: new FormControl("")
+      name: new FormControl(''),
+      setting: new FormControl(''),
+      system: new FormControl(''),
+      description: new FormControl(''),
     });
+  }
+
+  onDeleteCampaing(index: number) {
+    this.campaignService.deleteCampaign(index);
+  }
+
+  onAddSession(campaignIndex: number) {
+    const textElement = <HTMLInputElement>document.getElementsByClassName('newSession')[campaignIndex];
+    this.campaignService.addSession(campaignIndex, textElement.value);
+  }
+
+  onDeleteSession(campaignIndex: number, sessionIndex: number) {
+    this.campaignService.deleteSession(campaignIndex, sessionIndex);
   }
 
   onSubmit() {
