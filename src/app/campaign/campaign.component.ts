@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { MatIconModule } from '@angular/material/icon';
 
 import { Campaign } from './campaign.model';
 import { CampaignService } from './campaign.service';
@@ -15,6 +14,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
   campaignList: Campaign[] = [];
   private subscripcion!: Subscription;
   campaignForm!: FormGroup;
+  campaignsLines!: HTMLCollection;
 
   constructor(private campaignService: CampaignService) {}
 
@@ -31,6 +31,20 @@ export class CampaignComponent implements OnInit, OnDestroy {
       system: new FormControl(''),
       description: new FormControl(''),
     });
+    this.getCampaignLines();
+  }
+
+  getCampaignLines() {
+    this.campaignsLines = document.getElementsByClassName('collapse');
+  }
+
+  onToggleContent(campaignIndex: number) {
+    const campaignData = this.campaignsLines.item(campaignIndex)!;
+    if (campaignData.className === 'collapse') {
+      campaignData.className = 'collapse show';
+    } else {
+      campaignData.className = 'collapse';
+    }
   }
 
   onDeleteCampaing(index: number) {
