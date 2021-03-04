@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
 
 import { Campaign } from './campaign.model';
 import { CampaignService } from './campaign.service';
@@ -37,7 +38,9 @@ export class CampaignComponent implements OnInit, OnDestroy {
   }
 
   onAddSession(campaignIndex: number) {
-    const textElement = <HTMLInputElement>document.getElementsByClassName('newSession')[campaignIndex];
+    const textElement = <HTMLInputElement>(
+      document.getElementsByClassName('newSession')[campaignIndex]
+    );
     this.campaignService.addSession(campaignIndex, textElement.value);
   }
 
