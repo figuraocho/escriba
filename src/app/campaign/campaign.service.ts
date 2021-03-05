@@ -51,9 +51,13 @@ export class CampaignService {
     this.campaignsChange.next(this.campaignList);
   }
 
-  public addSession(campaignIndex: number, inputText: string) {
-    const newSession = new Session(new Date, inputText);
+  public addSession(campaignIndex: number, date:Date, inputText: string) {
+    const newSession = new Session(date, inputText);
     this.campaignList[campaignIndex].sessions?.push(newSession);
+  }
+
+  public getSession(campaignIndex:number, sessionIndex:number) {
+    return this.campaignList[campaignIndex].sessions![sessionIndex];
   }
 
   public deleteSession(campaignIndex: number, sessionIndex: number) {

@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog'
 
 import { Campaign } from './campaign.model';
 import { CampaignService } from './campaign.service';
+import { SessionComponent } from './session/session.component';
+import { Session } from './session/session.model';
 
 @Component({
   selector: 'app-campaign',
@@ -16,7 +19,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
   campaignForm!: FormGroup;
   campaignsLines!: HTMLCollection;
 
-  constructor(private campaignService: CampaignService) {}
+  constructor(private campaignService: CampaignService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.campaignList = this.campaignService.getCampaigns();
@@ -55,7 +58,18 @@ export class CampaignComponent implements OnInit, OnDestroy {
     const textElement = <HTMLInputElement>(
       document.getElementsByClassName('newSession')[campaignIndex]
     );
-    this.campaignService.addSession(campaignIndex, textElement.value);
+    this.campaignService.addSession(
+      campaignIndex,
+      new Date(),
+      textElement.value
+    );
+  }
+
+  openDialogSession(campaignIndex: number, sessionIndex: number) {
+    const loadedSession: Session = this.campaignService.getSession(campaignIndex, sessionIndex);
+    const dialogRef = this.dialog.open(SessionComponent, {
+      data: { sessionData: loadedSession },
+    });
   }
 
   onDeleteSession(campaignIndex: number, sessionIndex: number) {

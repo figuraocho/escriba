@@ -1,60 +1,38 @@
-<div class="container">
-  <div class="row">
-    <div class="col-2" style="background-color:lightblue;">
-      <div class="row">
-        <span class="material-icons md-48">list</span>
-      </div>
-      <div class="row">
-        <span class="material-icons md-48">auto_stories</span>
-      </div>
-      <div class="row">
-        <span class="material-icons md-48">article</span>
-      </div>
-      <div class="row">
-        <span class="material-icons md-48">feedback</span>
-      </div>
-    </div>
-    <div class="col-10" >
-      <div class="row justify-content-center" style="text-align: center; background-color: lightgoldenrodyellow;">
-        <h1>Lista de Campañas</h1>
-      </div>
-      <div class="row" style="background-color:lightcoral;">
-        <span class="material-icons md-48">add_box</span>
-        <span class="material-icons md-48">exit_to_app</span>
-        <span class="material-icons md-48">search</span>
-      </div>
-      <div class="row" style="background-color:lightgrey;">
-        <div *ngFor="let campaign of campaignList;let campaignIndex = index" class="col-12">
-          <div (click)="onToggleContent(campaignIndex)" style="cursor: pointer;">{{campaign.name}}</div>
-          <!-- <a data-toggle="collapse" href="#demo{{campaignIndex}}" onclick="return false;">{{campaign.name}}</a> -->
-          <div class="collapse" id="demo{{campaignIndex}}">
-            <!-- <p><b>Nombre</b> {{campaign.name}} <button (click)="onDeleteCampaing(campaignIndex)">Delete Campaign</button> </p>-->
-            <p><b>Ambientacion</b> {{campaign.setting}}</p>
-            <p><b>Sistema</b> {{campaign.system}}</p>
-            <p><b>Descripcion</b> {{campaign.description}}</p>
-            <table *ngIf="campaign.sessions" border="1">
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Apuntes</th>
-                </tr>
-              </thead>
-              <tr *ngFor="let session of campaign.sessions; let sessionIndex = index">
-                <th>{{session.date}}</th>
-                <th>{{session.text}}</th>
-                <th><button (click)="onDeleteSession(campaignIndex,sessionIndex)">Delete</button></th>
-              </tr>
-            </table>
-            <textarea rows="4" cols="60" class="newSession"></textarea><button (click)="onAddSession(campaignIndex)">Add
-              Session</button>
-            <br>
-          </div>
-        </div>
-      </div>
+<div class="row justify-content-center" style="text-align: center; ">
+  <h1>Lista de Campañas</h1>
+</div>
+<div class="row justify-content-center">
+  <span class="material-icons md-48">add_box</span>
+  <span class="material-icons md-48">exit_to_app</span>
+  <span class="material-icons md-48">search</span>
+</div>
+<div class="row">
+  <div *ngFor="let campaign of campaignList;let campaignIndex = index" class="col-12">
+    <button class="btn btn-success btn-block" (click)="onToggleContent(campaignIndex)"
+      style="margin: 2px;">{{campaign.name}}</button>
+    <div class="collapse" id="demo{{campaignIndex}}">
+      <p><b>Ambientacion:</b> {{campaign.setting}} <br>
+        <b>Sistema:</b> {{campaign.system}}<br>
+        <b>Descripcion:</b> {{campaign.description}}
+      </p>
+      <p>Sessiones anteriores
+        <button class="btn btn-primary btn-block" style="margin: 2px;"
+          *ngFor="let session of campaign.sessions; let sessionIndex = index"
+          (click)="openDialogSession(campaignIndex,sessionIndex)">{{session.date | date:
+          'short'}}</button>
+      </p>
+      <p>Nueva sesion
+        <textarea rows="4" class="newSession" style="width: 100%;"></textarea><button
+          (click)="onAddSession(campaignIndex)">Add
+          Session</button>
+      </p>
+      <br>
     </div>
   </div>
-  
-  <!-- <div class="row">
+</div>
+
+
+<!-- <div class="row">
     <div class="col-6">
       
     </div>
@@ -79,4 +57,3 @@
       <p><button type="submit" class="btn btn-primary">Crear</button></p>
     </form>
   </div> -->
-</div>
