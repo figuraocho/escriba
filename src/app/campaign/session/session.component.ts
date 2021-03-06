@@ -10,11 +10,13 @@ import { Session } from './session.model';
 })
 export class SessionComponent implements OnInit {
   sessionDate = new FormControl('');
+  sessionText = new FormControl('');
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { sessionData: Session }) {}
 
   ngOnInit(): void {
     console.log(this.data.sessionData.date);
     this.sessionDate.setValue(this.data.sessionData.date.toLocaleString());
+    this.sessionText.setValue(this.data.sessionData.text);
   }
 }
