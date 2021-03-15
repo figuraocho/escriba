@@ -1,22 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-2">
+    <div class="col-3">
       <div class="row">
-        <span class="material-icons md-48">list</span>
+        <a routerLink="">
+          <mat-icon aria-hidden="false" aria-label="home list">list</mat-icon>
+        </a>
       </div>
       <div class="row">
-        <span class="material-icons md-48">auto_stories</span>
+        <a routerLink="/campaign/campaign-list">
+          <mat-icon aria-hidden="false" aria-label="home auto_stories">auto_stories</mat-icon>
+        </a>
       </div>
       <div class="row">
-        <span class="material-icons md-48">article</span>
+        <a routerLink="">
+          <mat-icon aria-hidden="false" aria-label="home article">article</mat-icon>
+        </a>
       </div>
       <div class="row">
-        <span class="material-icons md-48">feedback</span>
+        <a routerLink="">
+          <mat-icon aria-hidden="false" aria-label="home feedback">feedback</mat-icon>
+        </a>
       </div>
     </div>
 
-    <div class="col-10">
-      <app-campaign></app-campaign>
+    <div class="col-9">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

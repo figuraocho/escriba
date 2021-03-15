@@ -1,0 +1,18 @@
+mat-icon{
+  font-size: 40px;
+  color: lightslategrey;
+  width: auto;
+}
+
+mat-icon:hover{
+  font-size: 40px;
+  color: green;
+}
+
+a {
+  margin: 2px;
+}
+
+div{
+  margin: 2px;
+}

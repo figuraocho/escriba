@@ -1,6 +1,8 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { ActivatedRoute, RouteConfigLoadEnd } from '@angular/router';
+import { CampaignService } from '../campaign.service';
+
 import { Session } from './session.model';
 
 @Component({
@@ -9,14 +11,19 @@ import { Session } from './session.model';
   styleUrls: ['./session.component.css'],
 })
 export class SessionComponent implements OnInit {
-  sessionDate = new FormControl('');
-  sessionText = new FormControl('');
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { sessionData: Session }) {}
+  idCampaign: number = -1;
+  idSession: number = -1;
+  session = new Session(new Date,"");
+  
+  constructor(private campaignService: CampaignService) {}
 
   ngOnInit(): void {
-    console.log(this.data.sessionData.date);
-    this.sessionDate.setValue(this.data.sessionData.date.toLocaleString());
-    this.sessionText.setValue(this.data.sessionData.text);
+    const route = new ActivatedRoute();
+    this.idCampaign = route.snapshot.params['idCampaign'];
+    console.log(this.idCampaign);
+    this.idSession = route.snapshot.params['idSession'];
+    console.log(this.idSession);
+    this.session = this.campaignService.getSession(this.idCampaign, this.idSession);
+    console.log(this.session);
   }
-}
+} 

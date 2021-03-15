@@ -1,0 +1,24 @@
+<div class="row" style="height: 4rem;">
+  <mat-icon aria-hidden="false" aria-label="icon">add_box</mat-icon>
+  <mat-icon aria-hidden="false" aria-label="icon">exit_to_app</mat-icon>
+  <mat-icon aria-hidden="false" aria-label="icon">search</mat-icon>
+</div>
+
+<div class="row">
+  <div class="accordion" id="campaignAccordion">
+    <div *ngFor="let campaign of campaignList;let campaignIndex = index" class="col-12 accordion-item">
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{campaign.name}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <a mat-raised-button color="primary" style="margin: 2px;"
+          *ngFor="let session of campaign.sessions; let sessionIndex = index" [routerLink]="['../session',campaignIndex,sessionIndex]">{{session.date |
+          date:'mediumDate'}}</a>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>

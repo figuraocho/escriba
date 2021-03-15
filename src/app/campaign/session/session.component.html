@@ -1,11 +1,18 @@
-<form>
-  <label for="sessionDate">Fecha:</label>
-  <input type="datetime" name="sessionDate" id="sessionDate" class="form-control" [formControl]="sessionDate" >
-  <label for="sessionText">Apuntes:</label>
-  <textarea name="sessionText" id="sessionText" rows="6" class="form-control" [formControl]="sessionText"></textarea>
+<form #sessionForm="ngForm">
+  <div class="form-group">
+    <label for="sessionDate">Fecha:</label>
+    <input type="date" name="sessionDate" id="sessionDate" class="form-control" [(ngModel)]="session.date" #date="ngModel" required>
+  </div>
+  <div class="alert alert-danger" [hidden]="date.valid || date.pristine">
+    <p>La fecha y hora debe ser válida</p>
+  </div>
+  <div class="form-group">
+    <label for="sessionText">Apuntes:</label>
+    <textarea name="sessionText" id="sessionText" rows="6" class="form-control" [(ngModel)]="session.text"></textarea>
+  </div>
   <br>
   <div style="width: 100%;">
-    <button type="button" class="btn btn-danger">Cancelar</button>
-    <button type="button" class="btn btn-success" style="float:right;">Guardar</button>
+    <button type="button" class="btn btn-danger" routerLink="/campaign/campaign-list">Cancelar</button>
+    <button type="button" class="btn btn-success" style="float:right;" [disabled]="!sessionForm.form.valid">Guardar</button>
   </div>
 </form>
