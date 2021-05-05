@@ -1,4 +1,35 @@
 mat-card {
-   max-width: 400px;
-   margin: 5px 5px 0px;
+   width: 300px;
+   height: 420px;
+}
+
+mat-card-title{
+  height: 30px;
+}
+mat-card-subtitle{
+  height: 20px;
+}
+
+.matCardImage{
+  height: 200px;
+}
+
+mat-card-content{
+  height: 100px;
+}
+
+mat-card-footer{
+  height: 100px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.botonBorrar {
+  margin: 0 0 0 120px;
+}
+
+.botonEditar {
+  margin: 0 0 0 50px;
 }

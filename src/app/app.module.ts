@@ -10,9 +10,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CampaignComponent } from './campaign/campaign.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { SessionComponent } from './session/session.component';
+import { CampaignModel } from './campaign/campaign/campaign.model';
 
 @NgModule({
-  declarations: [AppComponent, CampaignComponent],
+  declarations: [AppComponent, CampaignComponent, SessionComponent, CampaignModel],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,6 +25,7 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
