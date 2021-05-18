@@ -1,21 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { CampaignComponent } from './campaign/campaign.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { SessionComponent } from './session/session.component';
-import { CampaignModel } from './campaign/campaign/campaign.model';
+import { MatExpansionModule } from '@angular/material/expansion';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CampaignsComponent } from './campaigns/campaigns.component';
+import { SessionsComponent } from './sessions/sessions.component';
+import { CampaignComponent } from './campaigns/campaign/campaign.component';
+import { SessionComponent } from './sessions/session/session.component'
 
 @NgModule({
-  declarations: [AppComponent, CampaignComponent, SessionComponent, CampaignModel],
+  declarations: [
+    AppComponent,
+    CampaignsComponent,
+    SessionsComponent,
+    CampaignComponent,
+    SessionComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,6 +34,7 @@ import { CampaignModel } from './campaign/campaign/campaign.model';
     MatIconModule,
     MatCardModule,
     MatGridListModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

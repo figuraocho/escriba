@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-title>{{name}}</mat-card-title>
+  <mat-card-subtitle>Creada el: {{date}}</mat-card-subtitle>
+  <a routerLink="/sessions">
+    <img mat-card-image class="matCardImage"
+      [src]=image>
+  </a>
+  <mat-card-content>{{description}}</mat-card-content>
+  <mat-card-footer>
+    <button mat-icon-button class="botonEditar">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button class="botonBorrar">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-footer>
+</mat-card>

@@ -1,0 +1,12 @@
+.mini-image{
+  width: 81px;
+   height: 54px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-expansion-panel {
+  margin-top: 3px;
+}

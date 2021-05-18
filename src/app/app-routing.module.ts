@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CampaignComponent } from './campaign/campaign.component';
+import { CampaignsComponent } from './campaigns/campaigns.component';
+import { SessionsComponent } from './sessions/sessions.component';
 
-const routes: Routes = [{
-  path: "", component: CampaignComponent
-}];
+const routes: Routes = [
+  { path: "", component: CampaignsComponent },
+  { path: "sessions", component: SessionsComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

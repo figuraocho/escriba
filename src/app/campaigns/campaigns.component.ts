@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
 
-@Component({
-  selector: 'app-campaign',
-  templateUrl: './campaign.component.html',
-  styleUrls: ['./campaign.component.css'],
-})
-export class CampaignComponent implements OnInit {
-  numColumnas: number = 0;
+import { CampaignComponent } from './campaign/campaign.component';
 
-  //screenHeight: number = 0;
-  //screenWidth: number = 0;
+@Component({
+  selector: 'app-campaigns',
+  templateUrl: './campaigns.component.html',
+  styleUrls: ['./campaigns.component.css'],
+})
+  
+export class CampaignsComponent implements OnInit {
+  numColumnas: number = 0;
 
   constructor() {
     this.getScreenSize();
@@ -18,8 +18,6 @@ export class CampaignComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {
-    //this.screenHeight = window.innerHeight;
-    //this.screenWidth = window.innerWidth;
     this.numColumnas = Math.floor(window.innerWidth / 300);
   }
 
