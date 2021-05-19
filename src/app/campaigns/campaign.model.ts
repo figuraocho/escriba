@@ -1,5 +1,4 @@
-export class CampaignModel {
-  
+export class Campaign {
   constructor(
     public name: string = '',
     public date: Date = new Date(),

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
+import { Campaign } from './campaign.model';
 
 import { CampaignComponent } from './campaign/campaign.component';
+import { CampaignsService } from '../services/campaings.service';
 
 @Component({
   selector: 'app-campaigns',
@@ -11,8 +13,9 @@ import { CampaignComponent } from './campaign/campaign.component';
   
 export class CampaignsComponent implements OnInit {
   numColumnas: number = 0;
+  campaigns: Campaign[] = [];
 
-  constructor() {
+  constructor( private campaignService:CampaignsService ) {
     this.getScreenSize();
   }
 
