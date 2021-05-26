@@ -1,11 +1,10 @@
 <mat-card>
   <mat-card-title>{{name}}</mat-card-title>
-  <mat-card-subtitle>Creada el: {{date}}</mat-card-subtitle>
+  <mat-card-subtitle>Creada el: {{date | date}}</mat-card-subtitle>
   <a routerLink="/sessions">
-    <img mat-card-image class="matCardImage"
-      [src]=image>
+    <img mat-card-image class="matCardImage" [src]=image>
   </a>
-  <mat-card-content>{{description}}</mat-card-content>
+  <mat-card-content>{{description | slice:0:200}}<span *ngIf="description.length>200">...</span></mat-card-content>
   <mat-card-footer>
     <button mat-icon-button class="botonEditar">
       <mat-icon>edit</mat-icon>

@@ -1,20 +1,6 @@
 <mat-grid-list [cols]="numColumnas" rowHeight="500px" gutterSize="3">
-  <mat-grid-tile>
-    <app-campaign name='prueba'
-      image='https://mocah.org/uploads/posts/4514751-warrior-knight-fantasy-art-sword-medieval-armor.jpg'
-      date='04/05/2021' description='prueba prueba prueba prueba prueba prueba prueba prueba prueba'>
-    </app-campaign>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <app-campaign name='prueba'
-      image='https://mocah.org/uploads/posts/4514751-warrior-knight-fantasy-art-sword-medieval-armor.jpg'
-      date='04/05/2021' description='prueba prueba prueba prueba prueba prueba prueba prueba prueba'>
-    </app-campaign>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <app-campaign name='prueba'
-      image='https://mocah.org/uploads/posts/4514751-warrior-knight-fantasy-art-sword-medieval-armor.jpg'
-      date='04/05/2021' description='prueba prueba prueba prueba prueba prueba prueba prueba prueba'>
-    </app-campaign>
+  <mat-grid-tile *ngFor="let campaign of campaigns; let i=index">
+    <app-campaign [id]="i" [name]="campaign.name" [image]="campaign.image" [date]="campaign.date"
+      [description]="campaign.description"></app-campaign>
   </mat-grid-tile>
 </mat-grid-list>

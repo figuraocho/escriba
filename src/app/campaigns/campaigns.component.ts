@@ -24,5 +24,8 @@ export class CampaignsComponent implements OnInit {
     this.numColumnas = Math.floor(window.innerWidth / 300);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.campaigns = this.campaignService.getCampaigns();
+    //falta suscribirse
+  }
 }
