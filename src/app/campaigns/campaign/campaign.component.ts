@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CampaignsService } from 'src/app/services/campaings.service';
 
 @Component({
   selector: 'app-campaign',
@@ -12,7 +13,11 @@ export class CampaignComponent implements OnInit {
   @Input() date: Date = new Date();
   @Input() description: string = '';
 
-  constructor() {}
+  constructor(private campaignsService:CampaignsService) {}
 
   ngOnInit(): void {}
+
+  deleteCampaign(){
+    this.campaignsService.removeCampaign(this.id);
+  }
 }

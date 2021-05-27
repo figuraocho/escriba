@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Campaign } from '../campaigns/campaign.model';
 
 @Injectable({ providedIn: 'root' })
 export class CampaignsService {
+
+  campaignsChange:Subject<Campaign[]> = new Subject<Campaign[]>();
+
   campaigns: Campaign[] = [
     {
       name: 'campaign1',
@@ -59,9 +63,11 @@ Aenean at lobortis justo, malesuada blandit diam. Interdum et malesuada fames ac
 
   addCampaign(campaign: Campaign) {
     this.campaigns.push(campaign);
+    this.campaignsChange.next(this.campaigns.slice());
   }
 
   removeCampaign(index: number) {
     this.campaigns.splice(index, 1);
+    this.campaignsChange.next(this.campaigns.slice());
   }
 }

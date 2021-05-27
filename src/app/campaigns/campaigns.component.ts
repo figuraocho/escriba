@@ -10,12 +10,12 @@ import { CampaignsService } from '../services/campaings.service';
   templateUrl: './campaigns.component.html',
   styleUrls: ['./campaigns.component.css'],
 })
-  
+
 export class CampaignsComponent implements OnInit {
   numColumnas: number = 0;
   campaigns: Campaign[] = [];
 
-  constructor( private campaignService:CampaignsService ) {
+  constructor(private campaignService: CampaignsService) {
     this.getScreenSize();
   }
 
@@ -26,6 +26,9 @@ export class CampaignsComponent implements OnInit {
 
   ngOnInit(): void {
     this.campaigns = this.campaignService.getCampaigns();
-    //falta suscribirse
+    this.campaignService.campaignsChange.subscribe((campignsList) => {
+      this.campaigns = campignsList
+    }
+    );
   }
 }
