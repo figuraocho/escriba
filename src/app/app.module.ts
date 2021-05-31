@@ -8,13 +8,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CampaignsComponent } from './campaigns/campaigns.component';
 import { SessionsComponent } from './sessions/sessions.component';
 import { CampaignComponent } from './campaigns/campaign/campaign.component';
-import { SessionComponent } from './sessions/session/session.component'
+import { SessionComponent } from './sessions/session/session.component';
+import { EditComponent } from './campaigns/campaign/edit/edit.component'
 
 @NgModule({
   declarations: [
@@ -23,6 +29,7 @@ import { SessionComponent } from './sessions/session/session.component'
     SessionsComponent,
     CampaignComponent,
     SessionComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +42,11 @@ import { SessionComponent } from './sessions/session/session.component'
     MatCardModule,
     MatGridListModule,
     MatExpansionModule,
+    MatDialogModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

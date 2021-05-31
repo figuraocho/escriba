@@ -6,10 +6,10 @@
   </a>
   <mat-card-content>{{description | slice:0:200}}<span *ngIf="description.length>200">...</span></mat-card-content>
   <mat-card-footer>
-    <button mat-icon-button class="botonEditar">
+    <button mat-mini-fab class="botonEditar" (click)="editCampaign()">
       <mat-icon>edit</mat-icon>
     </button>
-    <button mat-icon-button class="botonBorrar" (click)="deleteCampaign()">
+    <button mat-mini-fab class="botonBorrar" color="warn" (click)="deleteCampaign()">
       <mat-icon>delete</mat-icon>
     </button>
   </mat-card-footer>

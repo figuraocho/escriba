@@ -1,0 +1,23 @@
+/* .doneButton{
+    position: relative;
+    left: 6rem;
+    top: 30px;
+}
+
+.cancelButton{
+    position: relative;
+    left: 2rem;
+    top: 30px;
+} */
+
+.spacer{
+    flex: 1 1 auto auto;
+}
+
+button{
+    margin: 2rem;
+}
+
+.centerText {
+    text-align: center;
+}

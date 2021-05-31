@@ -1,0 +1,7 @@
+{
+    "editor.fontFamily": "Fira Code",
+    "editor.fontWeight": "normal",
+    "editor.fontLigatures": true,
+    "editor.defaultFormatter": "HookyQR.beautify",
+    "editor.wordWrap": "on"
+}

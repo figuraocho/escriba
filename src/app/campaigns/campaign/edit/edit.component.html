@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>
+  Edicion de campaign
+</h2>
+<form #campaignForm="ngForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field appeareance="fill">
+      <mat-label>Nombre:</mat-label>
+      <input matInput type="text" [(ngModel)]="name" placeholder="Nombre de la campaña" name="campaignName">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Fecha de creacion:</mat-label>
+      <input matInput [matDatepicker]="picker" placeholder="Fecha de creacion" [(ngModel)]="date" name="campaignDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Descripcion:</mat-label>
+      <textarea matNativeControl rows="5" [(ngModel)]="description" name="campaignDescription"></textarea>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-mini-fab color="warn" class="cancelButton" (click)="cancel()" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+    <button mat-mini-fab color="primary" class="doneButton" (click)="save()">
+      <mat-icon>done</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</form>
