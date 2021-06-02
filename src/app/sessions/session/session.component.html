@@ -5,4 +5,12 @@
     </mat-panel-title>
   </mat-expansion-panel-header>
   {{text}}
+  <mat-action-row>
+    <button mat-mini-fab class="botonEditar" (click)="editSession()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-mini-fab class="botonBorrar" color="warn" (click)="deleteSession()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-action-row>
 </mat-expansion-panel>

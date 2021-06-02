@@ -9,7 +9,7 @@
 </mat-toolbar>
 
 <div *ngFor="let session of sessionList;let i=index">
-  <app-session [date]='session.date' [text]='session.description'></app-session>
+  <app-session [id]="i" [date]='session.date' [text]='session.description'></app-session>
 </div>
 
 <button mat-fab class="addButton"><mat-icon class="md-48">add</mat-icon></button>

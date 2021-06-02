@@ -49,7 +49,9 @@ export class EditComponent implements OnInit {
 
   onSubmit() {}
 
-  cancel() {}
+  cancel() {
+    this.dialogRef.close();
+  }
 
   save() {
     let campaign:Campaign = new Campaign(this.name, this.date, this.image, this.description);

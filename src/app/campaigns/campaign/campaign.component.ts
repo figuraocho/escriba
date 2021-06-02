@@ -51,7 +51,9 @@ export class CampaignComponent implements OnInit {
       }
     });
     dialog.afterClosed().subscribe(result => {
-      this.campaignsService.editCampaign(this.id,result);
+      if (result!==undefined){
+        this.campaignsService.editCampaign(this.id,result);
+      }
     });
   }
 }

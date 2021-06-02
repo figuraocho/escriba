@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>
+    {{title}}
+  </h2>
+  <form #sessionForm="ngForm" (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+      <mat-form-field>
+        <mat-label>Fecha de sesion:</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Fecha de sesion" [(ngModel)]="date" name="sessionDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Descripcion:</mat-label>
+        <textarea matNativeControl rows="5" [(ngModel)]="description" name="sessionDescription"></textarea>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-mini-fab color="warn" class="cancelButton" (click)="cancel()" mat-dialog-close>
+        <mat-icon>close</mat-icon>
+      </button>
+      <button mat-mini-fab color="primary" class="doneButton" (click)="save()">
+        <mat-icon>done</mat-icon>
+      </button>
+    </mat-dialog-actions>
+  </form>

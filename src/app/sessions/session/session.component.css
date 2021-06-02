@@ -10,3 +10,12 @@
 mat-expansion-panel {
   margin-top: 3px;
 }
+
+.mat-action-row {
+  place-content: space-around;
+}
+
+button{
+  position:relative;
+  right: 12px;
+}
