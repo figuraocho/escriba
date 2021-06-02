@@ -7,9 +7,6 @@ import {
   MatDialog
 } from '@angular/material/dialog';
 import {
-  Subscription
-} from 'rxjs';
-import {
   CampaignsService
 } from 'src/app/services/campaings.service';
 import {
@@ -31,7 +28,6 @@ export class CampaignComponent implements OnInit {
   @Input() date: Date = new Date();
   @Input() description: string = '';
 
-  modalEdit: Subscription = new Subscription();
   editedCampaign: Campaign = new Campaign();
 
   constructor(private campaignsService: CampaignsService, private matDialog: MatDialog) {}
@@ -44,20 +40,18 @@ export class CampaignComponent implements OnInit {
 
   editCampaign() {
     let dialog = this.matDialog.open(EditComponent, {
-      height: '400px',
+      height: '480px',
       width: '400px',
       data: {
+        title:"Editar datos",
         name: this.name,
         imagen: this.image,
         date: this.date,
         descripcion: this.description
       }
     });
-    this.modalEdit = dialog.afterClosed().subscribe(result => {
-      this.name = result.name;
-      this.image = result.image;
-      this.date = result.date;
-      this.description = result.description;
+    dialog.afterClosed().subscribe(result => {
+      this.campaignsService.editCampaign(this.id,result);
     });
   }
 }

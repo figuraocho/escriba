@@ -1,11 +1,15 @@
 <h2 mat-dialog-title>
-  Edicion de campaign
+  {{title}}
 </h2>
 <form #campaignForm="ngForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field appeareance="fill">
       <mat-label>Nombre:</mat-label>
       <input matInput type="text" [(ngModel)]="name" placeholder="Nombre de la campaña" name="campaignName">
+    </mat-form-field>
+    <mat-form-field appeareance="fill">
+      <mat-label>Imagen</mat-label>
+      <input matInput type="text" [(ngModel)]="image" placeholder="Direccion de la imagen" name="campaignImage">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Fecha de creacion:</mat-label>

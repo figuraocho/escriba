@@ -8,8 +8,8 @@
   <span class="spacer"></span>
 </mat-toolbar>
 
-<app-session date='05/05/2021' text='prueba prueba prueba prueba'></app-session>
+<div *ngFor="let session of sessionList;let i=index">
+  <app-session [date]='session.date' [text]='session.description'></app-session>
+</div>
 
-<app-session date='05/05/2021' text='prueba prueba prueba prueba'></app-session>
-
-<app-session date='05/05/2021' text='prueba prueba prueba prueba'></app-session>
+<button mat-fab class="addButton"><mat-icon class="md-48">add</mat-icon></button>

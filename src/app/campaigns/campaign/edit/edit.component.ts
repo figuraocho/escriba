@@ -19,6 +19,7 @@ import { Campaign } from '../../campaign.model';
 })
 export class EditComponent implements OnInit {
 
+  title: string = "";
   name: string = "";
   date: Date = new Date();
   description: string = "";
@@ -28,11 +29,13 @@ export class EditComponent implements OnInit {
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
+    title: string,
     name: string,
     imagen: string,
     date: Date,
     descripcion: string
   },private dialogRef: MatDialogRef<EditComponent>) {
+    this.title = data.title;
     this.name = data.name;
     this.date = data.date;
     this.description = data.descripcion;

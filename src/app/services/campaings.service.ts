@@ -7,7 +7,7 @@ export class CampaignsService {
 
   campaignsChange:Subject<Campaign[]> = new Subject<Campaign[]>();
 
-  campaigns: Campaign[] = [
+  campaignsList: Campaign[] = [
     {
       name: 'campaign1',
       date: new Date('5/5/2020'),
@@ -54,20 +54,25 @@ Aenean at lobortis justo, malesuada blandit diam. Interdum et malesuada fames ac
   ];
 
   getCampaigns() {
-    return this.campaigns.slice();
+    return this.campaignsList.slice();
   }
 
   getCampaign(index: number) {
-    return this.campaigns[index];
+    return this.campaignsList[index];
   }
 
   addCampaign(campaign: Campaign) {
-    this.campaigns.push(campaign);
-    this.campaignsChange.next(this.campaigns.slice());
+    this.campaignsList.push(campaign);
+    this.campaignsChange.next(this.campaignsList.slice());
   }
 
   removeCampaign(index: number) {
-    this.campaigns.splice(index, 1);
-    this.campaignsChange.next(this.campaigns.slice());
+    this.campaignsList.splice(index, 1);
+    this.campaignsChange.next(this.campaignsList.slice());
+  }
+
+  editCampaign(index:number,newData:Campaign){
+    this.campaignsList[index] = newData;
+    this.campaignsChange.next(this.campaignsList);
   }
 }

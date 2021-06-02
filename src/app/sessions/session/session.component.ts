@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SessionComponent implements OnInit {
 
-  @Input() date: string = "";
+  @Input() date: Date = new Date();
   @Input() text: string = "";
   
   constructor() { }

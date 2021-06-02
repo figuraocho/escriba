@@ -11,7 +11,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core'
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core'
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
