@@ -11,7 +11,7 @@ import {
 } from 'src/app/services/campaings.service';
 import {
   Campaign
-} from '../campaign.model';
+} from '../../models/campaign.model';
 import {
   EditComponent
 } from './edit/edit.component';

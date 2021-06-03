@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
-import { Campaign } from './campaign.model';
+import { Campaign } from '../models/campaign.model';
 
 import { CampaignsService } from '../services/campaings.service';
 import { MatDialog } from '@angular/material/dialog';

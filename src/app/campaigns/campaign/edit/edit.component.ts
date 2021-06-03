@@ -10,7 +10,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from '@angular/material/dialog'
-import { Campaign } from '../../campaign.model';
+import { Campaign } from '../../../models/campaign.model';
 
 @Component({
   selector: 'app-edit',
@@ -54,7 +54,7 @@ export class EditComponent implements OnInit {
   }
 
   save() {
-    let campaign:Campaign = new Campaign(this.name, this.date, this.image, this.description);
+    let campaign:Campaign = new Campaign("",this.name, this.date, this.image, this.description);
     this.dialogRef.close(campaign);
   }
 
