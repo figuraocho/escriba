@@ -24,7 +24,7 @@ export class SessionEditComponent implements OnInit {
   onSubmit(){}
 
   save(){
-    const newSession = new Session("","",this.date, this.text);
+    const newSession = new Session("",-1,this.date, this.text);
     this.dialogRef.close(newSession);
   }
 

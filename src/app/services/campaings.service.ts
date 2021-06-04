@@ -9,7 +9,7 @@ export class CampaignsService {
 
   campaignsList: Campaign[] = [
     {
-      id: 'campaign1',
+      DataBaseId: 'campaign1',
       name: 'campaign1',
       date: new Date('5/5/2020'),
       image:
@@ -19,7 +19,7 @@ export class CampaignsService {
 Aenean at lobortis justo, malesuada blandit diam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam pellentesque orci massa, eu dapibus felis malesuada id. Praesent dignissim eros eu faucibus pharetra. Nulla in lectus vitae magna vulputate lobortis. Praesent elementum ligula a diam vulputate faucibus. Aliquam erat volutpat. Etiam libero sem, condimentum ut aliquet eu, sollicitudin sit amet tortor.`,
     },
     {
-      id: "campaign2",
+      DataBaseId: "campaign2",
       name: 'campaign2',
       date: new Date('7/10/2020'),
       image:
@@ -27,7 +27,7 @@ Aenean at lobortis justo, malesuada blandit diam. Interdum et malesuada fames ac
       description: `Lorem ipsum dolor sit amet`,
     },
     {
-      id: 'campaign3',
+      DataBaseId: 'campaign3',
       name: 'campaign3',
       date: new Date('8/3/2020'),
       image:
@@ -37,7 +37,7 @@ Aenean at lobortis justo, malesuada blandit diam. Interdum et malesuada fames ac
 Aenean at lobortis justo, malesuada blandit diam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam pellentesque orci massa, eu dapibus felis malesuada id. Praesent dignissim eros eu faucibus pharetra. Nulla in lectus vitae magna vulputate lobortis. Praesent elementum ligula a diam vulputate faucibus. Aliquam erat volutpat. Etiam libero sem, condimentum ut aliquet eu, sollicitudin sit amet tortor.`,
     },
     {
-      id: 'campaign4',
+      DataBaseId: 'campaign4',
       name: 'campaign4',
       date: new Date('6/17/2020'),
       image:
@@ -47,7 +47,7 @@ Aenean at lobortis justo, malesuada blandit diam. Interdum et malesuada fames ac
 Aenean at lobortis justo, malesuada blandit diam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam pellentesque orci massa, eu dapibus felis malesuada id. Praesent dignissim eros eu faucibus pharetra. Nulla in lectus vitae magna vulputate lobortis. Praesent elementum ligula a diam vulputate faucibus. Aliquam erat volutpat. Etiam libero sem, condimentum ut aliquet eu, sollicitudin sit amet tortor.`,
     },
     {
-      id: 'campaign5',
+      DataBaseId: 'campaign5',
       name: 'campaign5',
       date: new Date('11/6/2020'),
       image:

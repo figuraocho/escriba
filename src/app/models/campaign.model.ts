@@ -1,6 +1,6 @@
 export class Campaign {
   constructor(
-    public id: string = "",
+    public DataBaseId: string = "",
     public name: string = '',
     public date: Date = new Date(),
     public image: string = '',
