@@ -15,6 +15,12 @@ import {
 import {
   ActivatedRoute
 } from '@angular/router';
+import {
+  MatDialog
+} from '@angular/material/dialog';
+import {
+  SessionEditComponent
+} from './session/session-edit/session-edit.component';
 
 @Component({
   selector: 'app-sessions',
@@ -27,21 +33,41 @@ export class SessionsComponent implements OnInit, OnDestroy {
   public sessionList: Session[] = [];
   private subscription: Subscription = new Subscription();
 
-  constructor(private sessionService: SesionsService, private activatedRoute: ActivatedRoute) {}
+  constructor(private sessionsService: SesionsService, private activatedRoute: ActivatedRoute, private matDialog: MatDialog) {}
 
   ngOnInit(): void {
     const output = this.activatedRoute.snapshot.paramMap.get('idCampaign');
     if (output !== null) {
       this.idCampaign = +output;
+      this.sessionsService.setCampaign(this.idCampaign);
+      this.sessionList = this.sessionsService.getCampaignSessions();
+      this.subscription = this.sessionsService.sessionsChange.subscribe(
+        newSessions => {
+          this.sessionList = newSessions;
+        }
+      );
+    } else {
+      //todo gestion de errores
     }
-    this.sessionService.setCampaign(this.idCampaign);
-    this.sessionList = this.sessionService.getCampaignSessions();
-    this.subscription = this.sessionService.sessionsChange.subscribe(
-      newSessions => {
-        this.sessionList = newSessions;
-        //console.log(this.sessionList);
+
+  }
+
+  addSession() {
+    let newSession: Session = new Session();
+    let dialogRef = this.matDialog.open(SessionEditComponent, {
+      width: '400px',
+      height: '600px',
+      data: {
+        editedSession: newSession,
+        title: "Nueva sesión"
       }
-    );
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        result.idCampaign = this.idCampaign;
+        this.sessionsService.addSession(result);
+      }
+    })
   }
 
   ngOnDestroy() {

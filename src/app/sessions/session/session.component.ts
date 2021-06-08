@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SessionEditComponent } from './session-edit/session-edit.component';
 import { SesionsService } from '../../services/sessions.service';
+import { Session } from '../../models/session.model';
 
 @Component({
   selector: 'app-session',
@@ -10,9 +11,7 @@ import { SesionsService } from '../../services/sessions.service';
 })
 export class SessionComponent implements OnInit {
 
-  @Input() id: number = -1;
-  @Input() date: Date = new Date();
-  @Input() text: string = "";
+  @Input() data: Session = new Session();
   
   constructor(private sessionsService:SesionsService, private matDialog: MatDialog) { }
 
@@ -20,16 +19,17 @@ export class SessionComponent implements OnInit {
   }
 
   editSession(){
-    const dialogRef = this.matDialog.open(SessionEditComponent,{width:'400px', height:'600px', data:{date: this.date, text: this.text}});
+    let sessionCopy : Session =  Object.assign({}, this.data);
+    const dialogRef = this.matDialog.open(SessionEditComponent,{width:'400px', height:'600px', data:{editedSession: sessionCopy, title:"Editar sesión"}});
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined){
-        this.sessionsService.editSession(this.id, result);
+        this.sessionsService.editSession(result);
       }
     })
   }
 
   deleteSession(){
-    this.sessionsService.deleteSession(this.id);
+    this.sessionsService.deleteSession(this.data.id);
   }
 
 }

@@ -5,13 +5,13 @@
     <mat-dialog-content>
       <mat-form-field>
         <mat-label>Fecha de sesion:</mat-label>
-        <input matInput [matDatepicker]="picker" placeholder="Fecha de sesion" [(ngModel)]="date" name="sessionDate">
+        <input matInput [matDatepicker]="picker" placeholder="Fecha de sesion" [(ngModel)]="session.date" name="sessionDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Descripcion:</mat-label>
-        <textarea matNativeControl rows="25" [(ngModel)]="text" name="sessionDescription"></textarea>
+        <textarea matNativeControl rows="25" [(ngModel)]="session.description" name="sessionDescription"></textarea>
       </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>

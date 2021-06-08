@@ -8,8 +8,8 @@
   <span class="spacer"></span>
 </mat-toolbar>
 
-<div *ngFor="let session of sessionList;let i=index">
-  <app-session [id]="i" [date]='session.date' [text]='session.description'></app-session>
+<div *ngFor="let session of sessionList">
+  <app-session [data]="session"></app-session>
 </div>
 
-<button mat-fab class="addButton"><mat-icon class="md-48">add</mat-icon></button>
+<button mat-fab class="addButton" (click)="addSession()"><mat-icon class="md-48">add</mat-icon></button>

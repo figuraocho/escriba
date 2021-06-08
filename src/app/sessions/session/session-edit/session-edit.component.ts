@@ -10,12 +10,11 @@ import { Session } from '../../../models/session.model';
 export class SessionEditComponent implements OnInit {
 
   title: string = "Editar sesión"
-  date: Date = new Date();
-  text: string = "";
+  session: Session = new Session ();
 
-  constructor(public dialogRef: MatDialogRef<SessionEditComponent>, @Inject(MAT_DIALOG_DATA) public data: {date: Date, text: string}) {
-    this.date = data.date;
-    this.text = data.text;
+  constructor(public dialogRef: MatDialogRef<SessionEditComponent>, @Inject(MAT_DIALOG_DATA) public data: {editedSession:Session, title:string}) {
+    this.session = data.editedSession;
+    this.title = data.title;
    }
 
   ngOnInit(): void {
@@ -24,8 +23,7 @@ export class SessionEditComponent implements OnInit {
   onSubmit(){}
 
   save(){
-    const newSession = new Session("",-1,this.date, this.text);
-    this.dialogRef.close(newSession);
+    this.dialogRef.close(this.session);
   }
 
   cancel(){

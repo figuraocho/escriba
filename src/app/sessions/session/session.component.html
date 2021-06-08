@@ -1,12 +1,11 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
     <mat-panel-title>
-      {{date | date}}
+      {{data.date | date}}
     </mat-panel-title>
   </mat-expansion-panel-header>
-  <p>{{id}}</p>
   <p>
-    {{text}}
+    {{data.description}}
   </p>
   <mat-action-row>
     <button mat-mini-fab class="botonEditar" (click)="editSession()">

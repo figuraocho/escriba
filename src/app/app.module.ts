@@ -22,6 +22,7 @@ import { CampaignComponent } from './campaigns/campaign/campaign.component';
 import { SessionComponent } from './sessions/session/session.component';
 import { EditComponent } from './campaigns/campaign/edit/edit.component';
 import { SessionEditComponent } from './sessions/session/session-edit/session-edit.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SessionEditComponent } from './sessions/session/session-edit/session-ed
     CampaignComponent,
     SessionComponent,
     EditComponent,
-    SessionEditComponent
+    SessionEditComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
