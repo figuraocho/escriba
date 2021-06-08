@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
+  isLogin: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(){
+
+  }
+
+  toggle(){
+    this.isLogin = !this.isLogin;
+    console.log(this.isLogin);
   }
 
 }
