@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { Campaign } from '../models/campaign.model';
 
 import { CampaignsService } from '../services/campaings.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditComponent } from './campaign/edit/edit.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-campaigns',
@@ -12,10 +13,11 @@ import { EditComponent } from './campaign/edit/edit.component';
   styleUrls: ['./campaigns.component.css'],
 })
 
-export class CampaignsComponent implements OnInit {
+export class CampaignsComponent implements OnInit, OnDestroy {
   numColumnas: number = 0;
   campaigns: Campaign[] = [];
   newCampaign: Campaign = new Campaign();
+  campaignSubscription: Subscription = new Subscription();
 
   constructor(private campaignService: CampaignsService, private matDialog: MatDialog) {
     this.getScreenSize();
@@ -28,7 +30,7 @@ export class CampaignsComponent implements OnInit {
 
   ngOnInit(): void {
     this.campaigns = this.campaignService.getCampaigns();
-    this.campaignService.campaignsChange.subscribe((campignsList) => {
+    this.campaignSubscription = this.campaignService.campaignsChange.subscribe((campignsList) => {
       this.campaigns = campignsList;
     }
     );
@@ -53,5 +55,9 @@ export class CampaignsComponent implements OnInit {
         this.newCampaign.description = result.description;
         this.campaignService.addCampaign(this.newCampaign);
       });
+  }
+
+  ngOnDestroy(){
+    this.campaignSubscription.unsubscribe();
   }
 }
