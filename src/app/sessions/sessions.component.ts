@@ -7,7 +7,7 @@ import {
   Session
 } from '../models/session.model';
 import {
-  SesionsService
+  SessionsService
 } from '../services/sessions.service';
 import {
   Subscription
@@ -33,7 +33,7 @@ export class SessionsComponent implements OnInit, OnDestroy {
   public sessionList: Session[] = [];
   private subscription: Subscription = new Subscription();
 
-  constructor(private sessionsService: SesionsService, private activatedRoute: ActivatedRoute, private matDialog: MatDialog) {}
+  constructor(private sessionsService: SessionsService, private activatedRoute: ActivatedRoute, private matDialog: MatDialog) {}
 
   ngOnInit(): void {
     const output = this.activatedRoute.snapshot.paramMap.get('idCampaign');

@@ -20,6 +20,7 @@
 </div>
 
 <div class="centerText">
-    <button mat-raised-button [disabled]="isLogin" (click)="toggle()">Sign in</button>
-    <button mat-raised-button [disabled]="!isLogin" (click)="toggle()">Sign up</button>
+    <button mat-raised-button *ngIf="!isLogin" (click)="toggle()">Switch to Sign in</button>
+    <button mat-raised-button *ngIf="isLogin" (click)="toggle()">Switch to Sign up</button>
+    <button mat-raised-button  (click)="launchProcess()">Launch Process</button>
 </div>

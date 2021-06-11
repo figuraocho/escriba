@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConectionService } from '../services/conection.service';
 
 @Component({
   selector: 'app-users',
@@ -9,7 +10,7 @@ export class UsersComponent implements OnInit {
 
   isLogin: boolean = true;
 
-  constructor() { }
+  constructor(private conection:ConectionService) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +21,9 @@ export class UsersComponent implements OnInit {
 
   toggle(){
     this.isLogin = !this.isLogin;
-    console.log(this.isLogin);
   }
 
+  launchProcess(){
+    this.conection.saveData();
+  }
 }

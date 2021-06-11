@@ -5,7 +5,7 @@ import { Session } from '../models/session.model';
 @Injectable({
   providedIn: 'root',
 })
-export class SesionsService {
+export class SessionsService {
 
   sessionsChange: Subject<Session[]> = new Subject<Session[]>();
   actualCampaignId: number = -1;

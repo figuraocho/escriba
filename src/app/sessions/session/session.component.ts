@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SessionEditComponent } from './session-edit/session-edit.component';
-import { SesionsService } from '../../services/sessions.service';
+import { SessionsService } from '../../services/sessions.service';
 import { Session } from '../../models/session.model';
 
 @Component({
@@ -13,7 +13,7 @@ export class SessionComponent implements OnInit {
 
   @Input() data: Session = new Session();
   
-  constructor(private sessionsService:SesionsService, private matDialog: MatDialog) { }
+  constructor(private sessionsService:SessionsService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
   }
