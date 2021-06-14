@@ -23,7 +23,11 @@ export class UsersComponent implements OnInit {
     this.isLogin = !this.isLogin;
   }
 
-  launchProcess(){
+  saveData(){
     this.conection.saveData();
+  }
+  
+  loadData(){
+    this.conection.loadData();
   }
 }
