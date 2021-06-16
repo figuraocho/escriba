@@ -2,7 +2,8 @@ import {
   HttpClient
 } from "@angular/common/http";
 import {
-  Injectable
+  Injectable,
+  OnInit
 } from "@angular/core";
 import {
   map
@@ -22,34 +23,44 @@ import {
   Session
 } from "../models/session.model";
 
-type DBSession = {
-  id: string,
-  date: Date,
-  description: string
+interface DBSession {
+  date: Date;
+  description: string;
 }
 
-type DBStructure = {
+interface DBStructure {
   name: string,
-  date: Date,
-  image: string,
-  description: string,
-  sessions: DBSession[] | undefined;
-} | undefined;
+    date: Date,
+    image: string,
+    description: string,
+    sessions: DBSession[] | undefined;
+};
+
+interface intermediateData extends DBStructure {
+  id: string;
+}
 
 
 @Injectable({
   providedIn: "root"
 })
-export class ConectionService {
 
-  constructor(private http: HttpClient, private campaignsService: CampaignsService, private sessionsService: SessionsService) {}
+export class ConectionService implements OnInit {
+
+  dataFromDatabase: intermediateData[] = [];
+
+  constructor(private http: HttpClient, private campaignsService: CampaignsService, private sessionsService: SessionsService) {
+    this.loadData();
+  }
+
+  ngOnInit() {}
 
   public loading: boolean = false;
-  dBStructure: DBStructure;
+  dBStructure!: DBStructure;
 
   saveData() {
-    let output: DBStructure[] = this.dataToDatabase();
-    this.loading = true; // todo no funciona, hay que trabajar con varias actualizaciones asincronas
+    let output: DBStructure[] = this.transformDataToDatabase();
+    this.loading = true; // ToDo no funciona, hay que trabajar con varias actualizaciones asincronas
     output.forEach(campaign => {
       this.http.post("https://scriba-72f2f-default-rtdb.europe-west1.firebasedatabase.app/campaigns.json", campaign).subscribe(() => this.loading = false);
       console.log(campaign);
@@ -61,30 +72,56 @@ export class ConectionService {
     let sessions: Session[] = [];
     this.loading = true;
     this.http
-    .get("https://scriba-72f2f-default-rtdb.europe-west1.firebasedatabase.app/campaigns.json")
-    .pipe(map(responseData => {
-      let dataArray = [];
-      let key: keyof typeof responseData;
-      for (key in responseData){
-        dataArray.push({...responseData[key], id:key});
-      }
-      return dataArray;
+      .get < DBStructure[] > ("https://scriba-72f2f-default-rtdb.europe-west1.firebasedatabase.app/campaigns.json")
+      .pipe(map(responseData => {
+        let dataArray: intermediateData[] = [];
+        for (let key in responseData) {
+          dataArray.push({
+            ...responseData[key],
+            id: key
+          });
+        }
+        return dataArray;
       }))
-    .subscribe(data => {
-      this.databaseToData(data);
-    })
-    
+      .subscribe((data) => {
+        if (data !== undefined) {
+          this.dataFromDatabase.push(...data);
+        }
+      })
   }
 
-  dataToDatabase() {
+  getCampaigns(): Campaign[] {
+    let campaignList: Campaign[] = [];
+    this.dataFromDatabase.forEach(data => {
+      campaignList.push(new Campaign(data.id, data.name, data.date, data.image, data.description));
+    })
+    console.log(campaignList);
+    return campaignList;
+  }
+
+  getSessions(): Session[] {
+    let sessionList: Session[] = [];
+    this.dataFromDatabase.forEach((data, index) => {
+      let sessions: DBSession[] | undefined = data.sessions;
+      if (sessions !== undefined) {
+        sessions.forEach((session, index2) => {
+          sessionList.push(new Session(index + "-" + index2, index, session.date, session.description));
+        })
+      }
+    })
+    console.log(sessionList);
+    return sessionList;
+  }
+
+  transformDataToDatabase() {
     let formatedData: DBStructure[] = [];
     const campaigns = this.campaignsService.getCampaigns();
     const sessions = this.sessionsService.getAllSessions();
     campaigns.forEach((campaign: Campaign, i: number) => {
-      let sessionList: Session[] = [];
+      let sessionsInCampaign: Session[] = [];
       sessions.forEach(session => {
         if (session.idCampaign === i) {
-          sessionList.push(session);
+          sessionsInCampaign.push(session);
         }
       });
       let actualCampaign: DBStructure = {
@@ -92,14 +129,10 @@ export class ConectionService {
         date: campaign.date,
         image: campaign.image,
         description: campaign.description,
-        sessions: sessionList
+        sessions: sessionsInCampaign
       };
       formatedData.push(actualCampaign);
     });
     return formatedData;
-  }
-
-  databaseToData(data:any) {
-    console.log(data);
   }
 }

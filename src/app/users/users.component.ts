@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
 import { ConectionService } from '../services/conection.service';
 
 @Component({
@@ -15,8 +17,9 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
-
+  onSubmit(ngForm:NgForm){
+    console.log(ngForm);
+    
   }
 
   toggle(){
@@ -24,10 +27,10 @@ export class UsersComponent implements OnInit {
   }
 
   saveData(){
-    this.conection.saveData();
+    this.conection.getSessions();
   }
   
   loadData(){
-    this.conection.loadData();
+    this.conection.getCampaigns();
   }
 }
