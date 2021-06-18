@@ -6,14 +6,14 @@
 </mat-toolbar>
 
 <div class="centerText">
-    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
-            <input matInput email required>
+            <input [ngModel]="email" name="email" matInput email required >
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput password required minlength="6">
+            <input [ngModel]="password" matInput password required minlength="6" name="password">
         </mat-form-field><br>
         <button mat-fab [disabled]="!userForm.valid"><mat-icon>done</mat-icon></button>
     </form>
@@ -22,6 +22,6 @@
 <div class="centerText">
     <button mat-raised-button *ngIf="!isLogin" (click)="toggle()">Switch to Sign in</button>
     <button mat-raised-button *ngIf="isLogin" (click)="toggle()">Switch to Sign up</button>
-    <button mat-raised-button  (click)="loadData()">loadCampaign</button>
-    <button mat-raised-button  (click)="saveData()">loadSessions</button>
+   <!--  <button mat-raised-button  (click)="loadData()">loadCampaign</button>
+    <button mat-raised-button  (click)="saveData()">loadSessions</button> -->
 </div>

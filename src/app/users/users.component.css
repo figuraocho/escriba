@@ -1,14 +1,16 @@
 .centerText {
-    text-align: center;
-  }
+  text-align: center;
+}
 
 .spacer {
-    flex: 1 1 auto;
-}
-mat-toolbar {
-    margin: 1rem 0;
+  flex: 1 1 auto;
 }
 
-button{
-    margin:1rem;
+mat-toolbar {
+  margin: 1rem 0;
 }
+
+button {
+  margin: 1rem;
+}
+
