@@ -12,7 +12,7 @@ import {
 interface responseSignUp {
   idToken:string,
   email:string,
-  refreshTocken:string,
+  refreshToken:string,
   expiresIn:string,
   localId:string
 }
@@ -31,14 +31,16 @@ export class UsersService {
   signIn(email:string, pass:string) {
      return this.http.post<responseSignIn>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + environment.firebaseApi, {email:email,password:pass, returnSecureToken:true})
      .pipe(map(response => {
-      return {id:response.idToken, refreshToken:response.refreshTocken, expiresIn:response.expiresIn, registered: response.registered}
+      return {id:response.idToken, refreshToken:response.refreshToken, expiresIn:response.expiresIn, registered: response.registered}
     }));
   }
 
   signUp(email:string, pass:string) {
     return this.http.post<responseSignUp>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + environment.firebaseApi, {email:email,password:pass, returnSecureToken:true} )
     .pipe(map(response => {
-      return {id:response.idToken, refreshToken:response.refreshTocken, expiresIn:response.expiresIn}
+      return {id:response.idToken, refreshToken:response.refreshToken, expiresIn:response.expiresIn}
     }));
- }
+  }
+
+  
 }

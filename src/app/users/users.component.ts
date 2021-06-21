@@ -2,6 +2,10 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import {
+  Router,
+  RouterLink
+} from '@angular/router';
 
 import {
   ConectionService
@@ -9,6 +13,16 @@ import {
 import {
   UsersService
 } from '../services/users.service';
+
+export interface signUp {
+  id: string;
+  refreshToken: string;
+  expiresIn: Date;
+}
+
+export interface signIn extends signUp {
+  registered: boolean;
+}
 
 @Component({
   selector: 'app-users',
@@ -20,10 +34,11 @@ export class UsersComponent implements OnInit {
   isLogin: boolean = true;
   public email: string = "";
   public password: string = "";
+  private id: string = "";
   private _token: string = "";
   private _tokenExpirationDate: Date = new Date();
 
-  constructor(private conection: ConectionService, private usersService: UsersService) {}
+  constructor(private conection: ConectionService, private usersService: UsersService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -32,7 +47,15 @@ export class UsersComponent implements OnInit {
     password: string
   }) {
     if (this.isLogin) {
-      console.log(this.usersService.signIn(userData.email, userData.password).subscribe());
+      this.usersService.signIn(userData.email, userData.password).subscribe((output => {
+        this.id = output.id;
+        this._tokenExpirationDate = new Date(new Date().getTime() + +output.expiresIn * 1000);
+        this._token = output.refreshToken;
+        console.log(this.id);
+        console.log(this._tokenExpirationDate);
+        console.log(this._token);
+        this.router.navigate(["/campaigns"]);
+      }));
     } else console.log(this.usersService.signUp(userData.email, userData.password).subscribe());
   }
 

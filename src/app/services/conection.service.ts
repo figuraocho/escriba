@@ -50,7 +50,6 @@ export class ConectionService implements OnInit {
   dataFromDatabase: intermediateData[] = [];
 
   constructor(private http: HttpClient, private campaignsService: CampaignsService, private sessionsService: SessionsService) {
-    this.loadData();
   }
 
   ngOnInit() {}
