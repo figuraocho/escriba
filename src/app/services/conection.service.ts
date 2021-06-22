@@ -1,5 +1,5 @@
 import {
-  HttpClient
+  HttpClient, HttpParams
 } from "@angular/common/http";
 import {
   Injectable,
@@ -71,7 +71,11 @@ export class ConectionService implements OnInit {
     let sessions: Session[] = [];
     this.loading = true;
     this.http
-      .get < DBStructure[] > ("https://scriba-72f2f-default-rtdb.europe-west1.firebasedatabase.app/campaigns.json")
+      .get < DBStructure[] > ("https://scriba-72f2f-default-rtdb.europe-west1.firebasedatabase.app/campaigns.json"
+
+      //{params: new HttpParams().set('auth', )}
+      
+      )
       .pipe(map(responseData => {
         let dataArray: intermediateData[] = [];
         for (let key in responseData) {

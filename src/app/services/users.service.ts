@@ -41,6 +41,4 @@ export class UsersService {
       return {id:response.idToken, refreshToken:response.refreshToken, expiresIn:response.expiresIn}
     }));
   }
-
-  
 }

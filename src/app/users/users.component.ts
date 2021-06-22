@@ -3,8 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  Router,
-  RouterLink
+  Router
 } from '@angular/router';
 
 import {
@@ -31,10 +30,10 @@ export interface signIn extends signUp {
 })
 export class UsersComponent implements OnInit {
 
-  isLogin: boolean = true;
+  public isLogin: boolean = true;
   public email: string = "";
   public password: string = "";
-  private id: string = "";
+  public id: string = "";
   private _token: string = "";
   private _tokenExpirationDate: Date = new Date();
 
@@ -48,20 +47,44 @@ export class UsersComponent implements OnInit {
   }) {
     if (this.isLogin) {
       this.usersService.signIn(userData.email, userData.password).subscribe((output => {
-        this.id = output.id;
-        this._tokenExpirationDate = new Date(new Date().getTime() + +output.expiresIn * 1000);
-        this._token = output.refreshToken;
-        console.log(this.id);
-        console.log(this._tokenExpirationDate);
-        console.log(this._token);
+        this.storeData(output);
         this.router.navigate(["/campaigns"]);
       }));
-    } else console.log(this.usersService.signUp(userData.email, userData.password).subscribe());
+    } else this.usersService.signUp(userData.email, userData.password).subscribe(
+      (output => {
+        this.storeData(output);
+        this.router.navigate(["/campaigns"]);
+      })
+    );
   }
 
-  toggle() {
-    this.isLogin = !this.isLogin;
+  storeData(userData:{id:string, refreshToken:string, expiresIn:string}){
+    this.id = userData.id;
+    this._tokenExpirationDate = new Date(new Date().getTime() + +userData.expiresIn * 1000);
+    this._token = userData.refreshToken;
+    this.saveToLocalStorate();
   }
+
+  saveToLocalStorate() {
+    localStorage.setItem('token', this._token);
+    localStorage.setItem('tokenExpirationDate', this._tokenExpirationDate.toString());
+    localStorage.setItem('id', this.id);
+    localStorage.setItem('email', this.email);
+  }
+
+  loadFromLocalStorage(){
+    const userToken:string | null = localStorage.getItem('token');
+    if (!userToken){
+      return;
+    }
+    this._token = userToken;
+    //this.email = localStorage.getItem('email');
+
+  }
+
+  toggleSignIn() {
+    this.isLogin = !this.isLogin;
+  } 
 
   saveData() {
     this.conection.getSessions();
