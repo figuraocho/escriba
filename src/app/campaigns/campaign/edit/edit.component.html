@@ -4,21 +4,21 @@
 <form #campaignForm="ngForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content>
     <mat-form-field appeareance="fill">
-      <mat-label>Nombre:</mat-label>
-      <input matInput type="text" [(ngModel)]="name" placeholder="Nombre de la campaña" name="campaignName">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" [(ngModel)]="name" placeholder="Name of the campaign" name="campaignName">
     </mat-form-field>
     <mat-form-field appeareance="fill">
-      <mat-label>Imagen</mat-label>
-      <input matInput type="text" [(ngModel)]="image" placeholder="Direccion de la imagen" name="campaignImage">
+      <mat-label>Image</mat-label>
+      <input matInput type="text" [(ngModel)]="image" placeholder="URL of the image" name="campaignImage">
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Fecha de creacion:</mat-label>
-      <input matInput [matDatepicker]="picker" placeholder="Fecha de creacion" [(ngModel)]="date" name="campaignDate">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" placeholder="Date of creation" [(ngModel)]="date" name="campaignDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Descripcion:</mat-label>
+      <mat-label>Description:</mat-label>
       <textarea matNativeControl rows="5" [(ngModel)]="description" name="campaignDescription"></textarea>
     </mat-form-field>
   </mat-dialog-content>

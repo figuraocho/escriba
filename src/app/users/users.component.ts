@@ -1,7 +1,11 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  ViewChild
 } from '@angular/core';
+import {
+  NgForm
+} from '@angular/forms';
 import {
   Router
 } from '@angular/router';
@@ -30,16 +34,19 @@ export interface signIn extends signUp {
 })
 export class UsersComponent implements OnInit {
 
+  @ViewChild('userForm') userFrm!: NgForm;
+
   public isLogin: boolean = true;
   public email: string = "";
   public password: string = "";
-  public id: string = "";
-  private _token: string = "";
-  private _tokenExpirationDate: Date = new Date();
 
-  constructor(private conection: ConectionService, private usersService: UsersService, private router: Router) {}
+  constructor(private user: UsersService, private conection: ConectionService, private usersService: UsersService, private router: Router) {}
 
   ngOnInit(): void {}
+
+  toggleSignIn() {
+    this.isLogin = !this.isLogin;
+  }
 
   onSubmit(userData: {
     email: string,
@@ -47,57 +54,39 @@ export class UsersComponent implements OnInit {
   }) {
     if (this.isLogin) {
       this.usersService.signIn(userData.email, userData.password).subscribe((output => {
-        this.storeData(output);
-        this.router.navigate(["/campaigns"]);
-      }));
+          this.user.storeData({
+            email: userData.email,
+            password: userData.password,
+            id: output.id,
+            refreshToken: output.refreshToken,
+            expiresIn: output.expiresIn
+          });
+          this.router.navigate(["/campaigns"]);
+        }),
+        (error => {
+          if (error.error.error.message === "EMAIL_NOT_FOUND") {
+            alert("The email do not exist in our database");
+          } else {
+            alert("There is a temporal problem in the servers, please try it later. (" + error.error.error.message + ")");
+          }
+          this.userFrm.resetForm();
+        })
+      );
     } else this.usersService.signUp(userData.email, userData.password).subscribe(
       (output => {
-        this.storeData(output);
+        this.user.storeData({
+          email: this.email,
+          password: this.password,
+          id: output.id,
+          refreshToken: output.refreshToken,
+          expiresIn: output.expiresIn
+        });
         this.router.navigate(["/campaigns"]);
+      }),
+      (error => {
+        alert("There is a temporal problem in the servers, please try it later. (" + error.error.error.message + ")")
+        console.log(error);
       })
     );
-  }
-
-  storeData(userData:{id:string, refreshToken:string, expiresIn:string}){
-    this.id = userData.id;
-    this._tokenExpirationDate = new Date(new Date().getTime() + +userData.expiresIn * 1000);
-    this._token = userData.refreshToken;
-    this.saveToLocalStorate();
-  }
-
-  saveToLocalStorate() {
-    localStorage.setItem('token', this._token);
-    localStorage.setItem('tokenExpirationDate', this._tokenExpirationDate.toString());
-    localStorage.setItem('id', this.id);
-    localStorage.setItem('email', this.email);
-  }
-
-  loadFromLocalStorage(){
-    const userToken:string | null = localStorage.getItem('token');
-    if (!userToken){
-      return;
-    }
-    this._token = userToken;
-    //this.email = localStorage.getItem('email');
-
-  }
-
-  toggleSignIn() {
-    this.isLogin = !this.isLogin;
-  } 
-
-  saveData() {
-    this.conection.getSessions();
-  }
-
-  loadData() {
-    this.conection.getCampaigns();
-  }
-
-  get token() {
-    if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
-      return null;
-    }
-    return this._token;
   }
 }

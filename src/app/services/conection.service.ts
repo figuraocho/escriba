@@ -1,5 +1,6 @@
 import {
-  HttpClient, HttpParams
+  HttpClient,
+  HttpParams
 } from "@angular/common/http";
 import {
   Injectable,
@@ -49,16 +50,15 @@ export class ConectionService implements OnInit {
 
   dataFromDatabase: intermediateData[] = [];
 
-  constructor(private http: HttpClient, private campaignsService: CampaignsService, private sessionsService: SessionsService) {
-  }
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {}
 
   public loading: boolean = false;
   dBStructure!: DBStructure;
 
-  saveData() {
-    let output: DBStructure[] = this.transformDataToDatabase();
+  saveData(campaigns: Campaign[], sessions:Session[]) {
+    let output: DBStructure[] = this.transformDataToDatabase(campaigns,sessions);
     this.loading = true; // ToDo no funciona, hay que trabajar con varias actualizaciones asincronas
     output.forEach(campaign => {
       this.http.post("https://scriba-72f2f-default-rtdb.europe-west1.firebasedatabase.app/campaigns.json", campaign).subscribe(() => this.loading = false);
@@ -73,8 +73,8 @@ export class ConectionService implements OnInit {
     this.http
       .get < DBStructure[] > ("https://scriba-72f2f-default-rtdb.europe-west1.firebasedatabase.app/campaigns.json"
 
-      //{params: new HttpParams().set('auth', )}
-      
+        //{params: new HttpParams().set('auth', )}
+
       )
       .pipe(map(responseData => {
         let dataArray: intermediateData[] = [];
@@ -98,7 +98,7 @@ export class ConectionService implements OnInit {
     this.dataFromDatabase.forEach(data => {
       campaignList.push(new Campaign(data.id, data.name, data.date, data.image, data.description));
     })
-    console.log(campaignList);
+    //console.log(campaignList);
     return campaignList;
   }
 
@@ -112,14 +112,12 @@ export class ConectionService implements OnInit {
         })
       }
     })
-    console.log(sessionList);
+    //console.log(sessionList);
     return sessionList;
   }
 
-  transformDataToDatabase() {
+  transformDataToDatabase(campaigns: Campaign[], sessions:Session[]) {
     let formatedData: DBStructure[] = [];
-    const campaigns = this.campaignsService.getCampaigns();
-    const sessions = this.sessionsService.getAllSessions();
     campaigns.forEach((campaign: Campaign, i: number) => {
       let sessionsInCampaign: Session[] = [];
       sessions.forEach(session => {

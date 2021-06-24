@@ -56,7 +56,7 @@ export class CampaignsComponent implements OnInit, OnDestroy {
       height: '480px',
       width: '400px',
       data: {
-        title: "Nueva Campaña",
+        title: "New Campaign",
         name: "",
         imagen: "",
         date: new Date(),

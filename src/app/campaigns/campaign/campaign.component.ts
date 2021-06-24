@@ -43,7 +43,7 @@ export class CampaignComponent implements OnInit {
       height: '480px',
       width: '400px',
       data: {
-        title:"Editar datos",
+        title:"Edit Campaign",
         name: this.name,
         imagen: this.image,
         date: this.date,

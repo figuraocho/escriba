@@ -1,4 +1,5 @@
 <mat-grid-list [cols]="numColumnas" rowHeight="500px" gutterSize="3">
+  <!-- <mat-grid-tile *ngIf=""><mat-progress-spinner mode="indeterminate"></mat-progress-spinner></mat-grid-tile> -->
   <mat-grid-tile *ngFor="let campaign of campaigns; let i=index">
     <app-campaign [id]="i" [name]="campaign.name" [image]="campaign.image" [date]="campaign.date"
       [description]="campaign.description"></app-campaign>

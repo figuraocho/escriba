@@ -10,7 +10,9 @@ export class SessionsService {
   sessionsChange: Subject<Session[]> = new Subject<Session[]>();
   actualCampaignId: number = -1;
 
-  sessionsList: Session[] = [
+  sessionsList: Session[] = [];
+
+  /* sessionsList: Session[] = [
     new Session("session1", 0,
       new Date('05/05/2021'),
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed dictum velit. Maecenas nisi mauris, fermentum a bibendum vel, lobortis euismod lacus. Nulla massa nulla, efficitur porttitor ligula a, euismod sagittis magna. In fringilla, neque ut accumsan laoreet, ligula libero vestibulum arcu, a fermentum est felis tempor turpis. Donec vel velit facilisis, semper dui volutpat, ullamcorper ligula. Fusce id lectus commodo, semper libero eget, rhoncus purus. Nulla vitae tincidunt libero. Donec nisi enim, auctor in tristique nec, blandit quis nulla. Cras ultricies quam eget dictum vulputate. Donec sagittis ligula eget odio egestas, eu iaculis sem venenatis.`
@@ -23,7 +25,7 @@ export class SessionsService {
       new Date('05/07/2021'),
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed dictum velit. Maecenas nisi mauris, fermentum a bibendum vel, lobortis euismod lacus. Nulla massa nulla, efficitur porttitor ligula a, euismod sagittis magna. In fringilla, neque ut accumsan laoreet, ligula libero vestibulum arcu, a fermentum est felis tempor turpis. Donec vel velit facilisis, semper dui volutpat, ullamcorper ligula. Fusce id lectus commodo, semper libero eget, rhoncus purus. Nulla vitae tincidunt libero. Donec nisi enim, auctor in tristique nec, blandit quis nulla. Cras ultricies quam eget dictum vulputate. Donec sagittis ligula eget odio egestas, eu iaculis sem venenatis.`
     ),
-  ];
+  ]; */
 
   constructor() {}
 

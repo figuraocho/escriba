@@ -14,6 +14,7 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,6 +54,7 @@ import { UsersComponent } from './users/users.component';
     MatNativeDateModule,
     FormsModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],

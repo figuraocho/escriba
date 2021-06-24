@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CampaignsService } from './services/campaings.service';
+import { ConectionService } from './services/conection.service';
+import { SessionsService } from './services/sessions.service';
 
 
 @Component({
@@ -10,10 +13,13 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'escriba';
 
-  constructor(private router:Router){}
+  constructor(private router:Router, private conection:ConectionService, private campaigns:CampaignsService, private sessions:SessionsService){}
 
   logout(){
     localStorage.clear();
     this.router.navigate(["/"]);
+  }
+  saveData(){
+    this.conection.saveData(this.campaigns.getCampaigns(), this.sessions.getAllSessions());
   }
 }
